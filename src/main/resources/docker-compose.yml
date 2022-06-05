@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  mysqldb:
+    image: mysql:8.0.29
+    container_name: mysql-db
+    environment:
+      MYSQL_USER: scott
+      MYSQL_PASSWORD: tiger
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: monitor
+    ports:
+      - "3308:3306"
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./init.sql:/data/application/init.sql
+    restart: always
